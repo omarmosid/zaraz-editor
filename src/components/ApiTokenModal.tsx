@@ -87,7 +87,7 @@ const ApiTokenModal: React.FC<ApiTokenModalProps> = () => {
               </FormControl>
 
               <FormControl>
-                <FormLabel>API Key</FormLabel>
+                <FormLabel>API Token</FormLabel>
                 <Input
                   name="apiKey"
                   value={form.apiKey}
@@ -101,7 +101,7 @@ const ApiTokenModal: React.FC<ApiTokenModalProps> = () => {
                 <FormHelperText>
                   An API token in Cloudflare is a secure key that grants access
                   to specific services or settings within your account. Your
-                  token should have edit permission for Zaraz{" "}
+                  token should have edit permission for Zaraz.{" "}
                   <Link
                     href="https://developers.cloudflare.com/fundamentals/api/get-started/create-token/"
                     isExternal

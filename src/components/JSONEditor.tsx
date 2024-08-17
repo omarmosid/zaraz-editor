@@ -57,6 +57,15 @@ const JSONEditor: React.FC<JSONEditorProps> = ({}) => {
         >
           Update
         </Button>
+
+        <Button
+          disabled={isInvalid}
+          isLoading={loading}
+          loadingText="Updating.."
+          onClick={() => updateZarazConfig(JSON.parse(json))}
+        >
+          Reset
+        </Button>
       </Flex>
     </>
   );
