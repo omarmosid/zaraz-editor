@@ -9,10 +9,38 @@ export const useZarazConfig = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const ENDPOINT_PROXY = `https://cf-api-proxy.omarmo.workers.dev/${zoneId}`;
+  const ENDPOINT_PROXY = `https://cf-api-proxy.omarmo.workers.dev/client/v4/zones/${zoneId}/settings/zaraz/config`;
 
   // Fetch the ZarazConfig
   const fetchZarazConfig = useCallback(async () => {
+    if (isInvalid) return;
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(ENDPOINT_PROXY, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setConfig(data.result as ZarazConfig);
+    } catch (err: any) {
+      setError(err.message || "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  }, [ENDPOINT_PROXY, isInvalid, apiKey]);
+
+  // Fetch the ZarazConfig
+  const fetchZarazDefaultConfig = useCallback(async () => {
     if (isInvalid) return;
     setLoading(true);
     setError(null);
