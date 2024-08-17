@@ -1,13 +1,15 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
+import { ApiTokenModal } from "./ApiTokenModal";
 
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {
   return (
     <>
-      <Box p={10}>
+      <Flex justifyContent="space-between" p={10}>
         <Heading>Zaraz Editor</Heading>
-      </Box>
+        <ApiTokenModal />
+      </Flex>
     </>
   );
 };
